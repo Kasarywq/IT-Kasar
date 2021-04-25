@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+#_*_coding:utf-8 _*_
+import json
+import sys
+import requests
+import os
+headers = {'Content-Type': 'application/json;charset=utf-8'}
+api_url="你的webhook地址"
+def msg(text,user):
+    json_text= {
+     "msgtype": "text",
+        "text": {
+            "content": text,
+            "mentioned_list": [user]
+
+        }
+        }
+
+    print (requests.post(api_url,json.dumps(json_text),headers=headers).content)
+
+if __name__ == '__main__':
+    text = sys.argv[3]
+    user = sys.argv[1]
+msg(text,user)
